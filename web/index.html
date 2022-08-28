@@ -13,34 +13,37 @@
         width: 50%;
         height: 10em;
         border: solid 5px gray;
+        display: block;
+      }
+      video {
+        width: 50%;
+        height: 10em;
+        border: solid 5px blue;
       }
     </style>
   </head>
   <body>
-    <div id="test" onclick="doStuff()">Test Div</div>
-    <button id="start" onclick="start()">Start video</button>
-    <button id="stop" onclick="stop()">Stop video</button>
-    <img></img>
+    <button id="start-video" onclick="startVideo()">Start video</button>
+    <button id="take-photo" onclick="takePhoto()">Take photo</button>
+    <img />
+    <video></video>
   </body>
 </html>
 <script>
-  function start() {
-    console.log("start");
+  function takePhoto() {
     navigator.mediaDevices.getUserMedia({ video: true }).then((mediaStream) => {
-    //   console.log(mediaStream);
-    //   document.querySelector("video").srcObject = mediaStream;
       const track = mediaStream.getVideoTracks()[0];
       const imageCapture = new ImageCapture(track);
       imageCapture.takePhoto().then((photo) => {
-        console.log(photo);
-        document.querySelector('img').src = URL.createObjectURL(photo);
-        });
+        document.querySelector("img").src = URL.createObjectURL(photo);
+      });
     });
   }
-  function stop() {
-    console.log("stop");
-  }
-  function doStuff() {
-    console.log("stuff");
+  function startVideo() {
+    navigator.mediaDevices.getUserMedia({ video: true }).then((mediaStream) => {
+      const video = document.querySelector("video");
+      video.srcObject = mediaStream;
+      video.play();
+    });
   }
 </script>
