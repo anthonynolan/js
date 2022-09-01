@@ -1,10 +1,12 @@
-import Grid2 from "./Grid";
+import { Container } from "@mui/material";
+import Board from "./Board";
+import "./index.css";
 
 function App() {
   return (
-    <div>
-      <Grid2 />
-    </div>
+    <Container>
+      <Board />
+    </Container>
   );
 }
 
