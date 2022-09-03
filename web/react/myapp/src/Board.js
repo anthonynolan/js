@@ -1,30 +1,20 @@
-import { Grid, Button, Container } from "@mui/material/";
+import { Grid } from "@mui/material/";
+import Tile from "./Tile";
 
-const width = 3;
-const height = 3;
-
-function Board() {
+function Board(props) {
   let content = [];
 
-  for (let row = 0; row < height; row++) {
-    for (let col = 0; col < width; col++) {
-      content.push(
-        <Grid key={row * width + col} item xs={12 / width}>
-          {/* <Paper elevation={5}>
-            <Typography
-              variant="h3"
-              component="h1"
-            >{`${row}, ${col}`}</Typography>
-          </Paper> */}
-          <Container>
-            <Button variant="contained" size="large">
-              {row}, {col}
-            </Button>
-          </Container>
-        </Grid>
-      );
-    }
+  for (let col = 0; col < props.width; col++) {
+    content.push(
+      <Tile
+        selected={props.current == col}
+        key={col}
+        width={props.width}
+        col={col}
+      />
+    );
   }
+
   return (
     <Grid container spacing={2}>
       {content}
