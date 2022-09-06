@@ -5,6 +5,12 @@
     font-family: "Roboto";
 }
 
-/* .MuiPaper-root{ */
-    /* background-color: red; */
-/* } */
+textarea{
+    width: 50%;
+    
+}
+
+.alert{
+    border: solid 2px red;
+    width: 50%;
+}
